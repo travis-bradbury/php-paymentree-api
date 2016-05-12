@@ -1,0 +1,11 @@
+{
+    "name": "travis-bradbury/php-paymentree-api",
+    "description": "This library wraps the Paymentree API for ease of use.",
+    "authors": [
+        {
+            "name": "Travis Bradbury",
+            "email": "travis@0x29a.ca"
+        }
+    ],
+    "require": {}
+}
