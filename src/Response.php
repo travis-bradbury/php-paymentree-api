@@ -2,6 +2,9 @@
 
 namespace Paymentree;
 
+use \DOMDocument;
+use \DOMException;
+
 class Response {
 
   /**
@@ -57,8 +60,15 @@ class Response {
   protected $transaction_code;
 
   /**
+   * @var \DOMDocument
+   * A DOMDocument object representing the response.
+   */
+  protected $document;
+
+  /**
    * Response constructor.
    * @param $response
+   * @throws \DOMException
    */
   public function __construct($response) {
   }

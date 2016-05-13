@@ -68,4 +68,21 @@ class Transaction {
 
     return $document;
   }
+
+  /**
+   * @return string
+   */
+  public function to_string() {
+    $document = $this->to_node();
+    return $document->saveXML();
+  }
+
+  /**
+   * @return \Paymentree\Response
+   */
+  public function send() {
+    $connection = Paymentree::connect();
+    $response = $connection->send($this->to_string());
+    return Paymentree::load_response($response);
+  }
 }

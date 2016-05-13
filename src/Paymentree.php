@@ -2,7 +2,12 @@
 
 namespace Paymentree;
 
+use \DOMDocument;
+use \DOMException;
+
 class Paymentree {
+  protected static $connection;
+
   /**
    * @var string
    */
@@ -167,5 +172,88 @@ class Paymentree {
    */
   public static function is_successful($code) {
     return $code === self::$RESPONSE_CODE_SUCCESSFUL;
+  }
+
+  /**
+   * @param string $ip_address
+   * @param int $port
+   * @return \Paymentree\Connection
+   */
+  public static function connect($ip_address = NULL, $port = NULL) {
+    if (!self::$connection) {
+      if (!$ip_address) {
+        $ip_address = self::$DEFAULT_LOCAL_IP_ADDRESS;
+      }
+
+      if (!$port) {
+        $port = self::$DEFAULT_PORT;
+      }
+
+      self::$connection = new Connection($ip_address, $port);
+    }
+
+    return self::$connection;
+  }
+
+  /**
+   * Get the appropriate response class for a response.
+   * @param \DOMDocument $response
+   * @return string
+   * The name of the class to use for the response.
+   */
+  public static function response_class($response) {
+    // Default to basic Response.
+    $class = 'Response';
+
+    $list = $response->getElementsByTagName('CardTypeUsed');
+
+    if ($list->length) {
+      $node = $list->item(0);
+      switch ($node->nodeValue) {
+        case 'DEBIT ACCOUNT':
+          $class = 'DebitResponse';
+          break;
+        case 'GIFTCARD':
+          // TODO not sure what correct case is here.
+          $class = 'GiftcardResponse';
+          break;
+        case 'CASH':
+          // TODO not sure what correct case is here.
+          $class = 'CashResponse';
+          break;
+      }
+    }
+
+    return $class;
+  }
+
+  /**
+   * @param $response
+   * @return \Paymentree\Response
+   * @throws \DOMException
+   */
+  public static function load_response($response) {
+    // loadXML reports an error if XML is not well formed. Handle the error by
+    // throwing an exception.
+    set_error_handler(function($errno, $errstr, $errfile, $errline) {
+      if (strpos($errstr, 'DOMDocument')) {
+        throw new \DOMException($errstr);
+      }
+      // Fall back on previous error handler.
+      return false;
+    });
+
+    $document = new DOMDocument();
+    try {
+      $document->loadXML($response);
+    } catch (DOMException $e) {
+      // Don't let the custom error handler survive beyond this constructor.
+      restore_error_handler();
+      throw $e;
+    }
+    restore_error_handler();
+
+    $class = self::response_class($document);
+    return new $class($document);
   }
 }
