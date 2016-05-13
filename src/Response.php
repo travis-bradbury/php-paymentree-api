@@ -10,164 +10,196 @@ class Response {
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $pay_linq_trans_id;
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    * Used for TablePay only.
    */
   protected $check_no;
 
   /**
    * @var int
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $trans_resp_code;
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $trans_resp_msg;
 
   /**
    * @var string
+   * Applies to Debit and Giftcard transactions.
    */
   protected $card_no;
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $card_type_used;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $invoice_number;
 
   /**
    * @var string
+   * Applies to Debit and Giftcard transactions.
    */
   protected $provider_trans_id;
 
   /**
    * @var int
+   * Applies to Giftcard transactions.
    */
   protected $card_balance;
 
   /**
    * @var string
+   * Applies to Giftcard transactions.
    */
   protected $card_exp_date;
 
   /**
    * @var int
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $processed_amount;
 
   /**
    * @var string
+   * Applies to Debit and Giftcard transactions.
    */
   protected $card_entry_mode;
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $card_code;
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $merchant_receipt;
 
   /**
    * @var string
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $customer_receipt;
 
   /**
    * @var int
+   * Applies to Debit transactions.
    */
   protected $tip_amount;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $signature;
 
   /**
    * @var string
    * The type of image.
+   * Applies to Debit transactions.
    */
   protected $mime_type;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $emv_name;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $emv_aid;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $emv_tvr;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $emv_tsi;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $trace;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $mendorse;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $cendorse;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $header;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $footer;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $account;
 
   /**
    * @var string
+   * Applies to Debit and Giftcard transactions.
    */
   protected $cust_lang;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $token;
 
   /**
    * @var string
+   * Applies to Debit transactions.
    */
   protected $token_exp;
 
   /**
    * @var string
    * Used for TablePay only.
+   * Applies to Debit, Cash, and Giftcard transactions.
    */
   protected $transaction_code;
 
@@ -183,6 +215,7 @@ class Response {
   //
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getPayLinqTransactionId() {
@@ -199,6 +232,8 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
+   * Used for TablePay only.
    * @return string
    */
   public function getCheckNumber() {
@@ -214,6 +249,8 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
+   * Used for TablePay only.
    * @return string
    */
   public function getChequeNumber() {
@@ -230,6 +267,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getResponseCode() {
@@ -246,6 +284,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getResponseMessage() {
@@ -262,6 +301,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit and Giftcard transactions.
    * @return string
    */
   public function getCardNumber() {
@@ -278,6 +318,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getCardType() {
@@ -294,6 +335,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getInvoiceNumber() {
@@ -310,6 +352,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit and Giftcard transactions.
    * @return string
    */
   public function getProviderTransactionId() {
@@ -326,6 +369,7 @@ class Response {
   }
 
   /**
+   * Applies to Giftcard transactions.
    * @return string
    */
   public function getCardBalance() {
@@ -342,6 +386,7 @@ class Response {
   }
 
   /**
+   * Applies to Giftcard transactions.
    * @return string
    */
   public function getCardExpiryDate() {
@@ -360,6 +405,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getProcessedAmount() {
@@ -376,6 +422,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit and Giftcard transactions.
    * @return string
    */
   public function getCardEntryMode() {
@@ -392,6 +439,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getCardCode() {
@@ -408,6 +456,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getMerchantReceipt() {
@@ -424,6 +473,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftcard transactions.
    * @return string
    */
   public function getCustomerReceipt() {
@@ -440,6 +490,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getTipAmount() {
@@ -456,6 +507,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getSignature() {
@@ -472,6 +524,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getMimeType() {
@@ -488,6 +541,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getEmvName() {
@@ -504,6 +558,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getEmvAid() {
@@ -520,6 +575,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getEmvTvr() {
@@ -543,6 +599,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @param $data
    * @return $this
    */
@@ -552,6 +609,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getTrace() {
@@ -568,6 +626,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getMEndorse() {
@@ -584,6 +643,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getCEndorse() {
@@ -600,6 +660,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getHeader() {
@@ -616,6 +677,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getFooter() {
@@ -632,6 +694,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getAccount() {
@@ -648,6 +711,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit and Giftcard transactions.
    * @return string
    */
   public function getCustomerLanguage() {
@@ -664,6 +728,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getToken() {
@@ -680,6 +745,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit transactions.
    * @return string
    */
   public function getTokenExpiry() {
@@ -697,6 +763,7 @@ class Response {
   }
 
   /**
+   * Applies to Debit, Cash, and Giftacard transactions.
    * Used for TablePay only.
    * @return string
    */
