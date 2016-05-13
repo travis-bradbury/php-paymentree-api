@@ -6,57 +6,24 @@ use \DOMDocument;
 use \DOMException;
 
 class Paymentree {
+
+  const DEFAULT_LOCAL_IP_ADDRESS = '127.0.0.1';
+  const DEFAULT_PORT = 320000;
+
+  const REQUEST_TYPE = 00;
+
+  const ACTION_TYPE_PURCHASE = 00;
+  const ACTION_TYPE_REFUND = 10;
+  const ACTION_TYPE_VOID = 30;
+  const ACTION_TYPE_COMMIT = 40;
+  const ACTION_TYPE_QUERY_VOID = 22;
+  const ACTION_TYPE_TERMINAL_CLOSE_LIST = 28;
+  const ACTION_TYPE_TERMINAL_CLOSE = 51;
+
+  /**
+   * @var \Paymentree\Connection
+   */
   protected static $connection;
-
-  /**
-   * @var string
-   */
-  public static $DEFAULT_LOCAL_IP_ADDRESS = '127.0.0.1';
-
-  /**
-   * @var int
-   */
-  public static $DEFAULT_PORT = 320000;
-
-  /**
-   * @var int
-   */
-  public static $REQUEST_TYPE = 00;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_PURCHASE = 00;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_REFUND = 10;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_VOID = 30;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_COMMIT = 40;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_QUERY_VOID = 22;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_TERMINAL_CLOSE_LIST = 28;
-
-  /**
-   * @var int
-   */
-  public static $ACTION_TYPE_TERMINAL_CLOSE = 51;
 
   /**
    * @var int
@@ -64,13 +31,13 @@ class Paymentree {
    * successful.
    * Eg: `if ($code === Paymentree::$RESPONSE_CODE_SUCCESSFUL) {`
    */
-  public static $RESPONSE_CODE_SUCCESSFUL = 0;
+  const RESPONSE_CODE_SUCCESSFUL = 0;
 
   /**
    * @var array
    * Response codes from Paymentree.
    */
-  protected static $response_codes = array(
+  const RESPONSE_CODES = array(
     0 => "Action Successful",
     1 => "Message Format is Invalid",
     2 => "Request Type Not Supported",
@@ -156,7 +123,7 @@ class Paymentree {
    * @return string
    */
   public static function response_code_message($code) {
-    $codes = self::$response_codes;
+    $codes = self::RESPONSE_CODES;
     if (isset($codes[$code])) {
       return $codes[$code];
     }
@@ -171,7 +138,7 @@ class Paymentree {
    * @return bool
    */
   public static function is_successful($code) {
-    return $code === self::$RESPONSE_CODE_SUCCESSFUL;
+    return $code === self::RESPONSE_CODE_SUCCESSFUL;
   }
 
   /**
@@ -182,11 +149,11 @@ class Paymentree {
   public static function connect($ip_address = NULL, $port = NULL) {
     if (!self::$connection) {
       if (!$ip_address) {
-        $ip_address = self::$DEFAULT_LOCAL_IP_ADDRESS;
+        $ip_address = self::DEFAULT_LOCAL_IP_ADDRESS;
       }
 
       if (!$port) {
-        $port = self::$DEFAULT_PORT;
+        $port = self::DEFAULT_PORT;
       }
 
       self::$connection = new Connection($ip_address, $port);
