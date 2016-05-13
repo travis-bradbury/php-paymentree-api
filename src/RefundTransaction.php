@@ -2,10 +2,10 @@
 
 namespace Paymentree;
 
-class PaymentTransaction extends PaymentRefundTransaction {
+class RefundTransaction extends PaymentRefundTransaction {
 
   /**
-   * PaymentTransaction constructor.
+   * RefundTransaction constructor.
    * @param array $params
    * Values for the transaction. Possible keys are:
    * - client
@@ -19,6 +19,6 @@ class PaymentTransaction extends PaymentRefundTransaction {
   public function __construct($params) {
     parent::__construct($params);
 
-    $this->action_type = Paymentree::$ACTION_TYPE_PURCHASE;
+    $this->action_type = Paymentree::$ACTION_TYPE_REFUND;
   }
 }
