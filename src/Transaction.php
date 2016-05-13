@@ -73,8 +73,7 @@ class Transaction {
    * @return string
    */
   public function to_string() {
-    $document = $this->to_node();
-    return $document->saveXML();
+    return $this->to_node()->saveXML();
   }
 
   /**
