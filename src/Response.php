@@ -10,6 +10,11 @@ class Response {
   /**
    * @var string
    */
+  public $type;
+
+  /**
+   * @var string
+   */
   protected $pay_linq_trans_id;
 
   /**
@@ -71,6 +76,7 @@ class Response {
    * @throws \DOMException
    */
   public function __construct($response) {
+    $this->type = Paymentree::RESPONSE_TYPE_GENERIC;
   }
 
   /**

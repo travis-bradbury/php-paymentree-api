@@ -15,6 +15,15 @@ class GiftcardResponse extends DebitGiftcardResponse {
   protected $card_exp_date;
 
   /**
+   * GiftcardResponse constructor.
+   * @param $response
+   */
+  public function __construct($response) {
+    parent::__construct($response);
+    $this->type = Paymentree::RESPONSE_TYPE_GIFTCARD;
+  }
+
+  /**
    * @return string
    */
   public function getCardBalance() {

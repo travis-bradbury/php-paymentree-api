@@ -20,6 +20,11 @@ class Paymentree {
   const ACTION_TYPE_TERMINAL_CLOSE_LIST = 28;
   const ACTION_TYPE_TERMINAL_CLOSE = 51;
 
+  const RESPONSE_TYPE_GENERIC = 'response';
+  const RESPONSE_TYPE_DEBIT = 'debit';
+  const RESPONSE_TYPE_CASH = 'cash';
+  const RESPONSE_TYPE_GIFTCARD = 'giftcard';
+
   /**
    * @var \Paymentree\Connection
    */

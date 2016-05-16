@@ -85,6 +85,11 @@ class DebitResponse extends DebitGiftcardResponse {
    */
   protected $token_exp;
 
+  public function __construct($response) {
+    parent::__construct($response);
+    $this->type = Paymentree::RESPONSE_TYPE_DEBIT;
+  }
+
   /**
    * @return string
    */
