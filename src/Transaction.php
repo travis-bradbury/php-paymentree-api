@@ -52,6 +52,38 @@ class Transaction {
   }
 
   /**
+   * @return int
+   */
+  public function getActionType() {
+    return $this->action_type;
+  }
+
+  /**
+   * @param int $type
+   * @return $this
+   */
+  public function setActionType($type) {
+    $this->action_type = $type;
+    return $this;
+  }
+
+  /**
+   * @return int
+   */
+  public function getRequestType() {
+    return $this->request_type;
+  }
+
+  /**
+   * @param int $type
+   * @return $this
+   */
+  public function setRequestType($type) {
+    $this->request_type = $type;
+    return $this;
+  }
+
+  /**
    * @param \DOMDocument $document
    * @return \DOMDocument
    */
