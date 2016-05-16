@@ -18,7 +18,27 @@ class BatchCloseTransaction extends Transaction {
   public function __construct(array $params) {
     parent::__construct($params);
 
+    if (empty($params['terminal_no'])) {
+      $this->terminal_no = 'all';
+    }
+
     $this->action_type = Paymentree::ACTION_TYPE_TERMINAL_CLOSE;
+  }
+
+  /**
+   * @param string $terminal_number
+   * @return $this
+   */
+  public function setTerminal($terminal_number) {
+    $this->terminal_no = $terminal_number;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTerminal() {
+    return $this->terminal_no;
   }
 
   /**
