@@ -228,4 +228,17 @@ class Paymentree {
     $class = self::response_class($document);
     return new $class($document);
   }
+
+  /**
+   * Transform the Get Terminal List for Closing response into an array of
+   * terminal ids.
+   * Eg:
+   * $message = new GetTerminalListTransaction()->send()->getResponseMessage;
+   * `$ids = Paymentree::terminal_ids($message);`
+   * @param string $message
+   * @return array
+   */
+  public static function terminal_ids($message) {
+    return explode('^', $message);
+  }
 }
