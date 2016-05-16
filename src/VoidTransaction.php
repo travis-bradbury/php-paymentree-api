@@ -27,7 +27,7 @@ class VoidTransaction extends PaymentRefundTransaction {
   public function __construct($params) {
     parent::__construct($params);
 
-    $this->action_type = Paymentree::$ACTION_TYPE_PURCHASE;
+    $this->action_type = Paymentree::ACTION_TYPE_PURCHASE;
   }
 
   /**
