@@ -42,7 +42,7 @@ class Paymentree {
    * @var array
    * Response codes from Paymentree.
    */
-  const RESPONSE_CODES = array(
+  const RESPONSE_CODES = [
     0 => "Action Successful",
     1 => "Message Format is Invalid",
     2 => "Request Type Not Supported",
@@ -120,7 +120,7 @@ class Paymentree {
     313 => "Refund limit exceeded for the card type",
     314 => "The payment terminal is not responding",
     999 => "Transaction Request Qualifies as a Duplicate",
-  );
+  ];
 
   /**
    * Get the message for a response code.

@@ -29,7 +29,7 @@ class Transaction {
    * @param array $params
    * An array of parameters to add to the transaction.
    */
-  public function __construct($params = array()) {
+  public function __construct($params = []) {
     $this->request_type = Paymentree::REQUEST_TYPE;
 
     // TODO this allows overriding properties that it shouldn't. $type, for one.

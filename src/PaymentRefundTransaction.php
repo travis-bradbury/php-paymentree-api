@@ -55,7 +55,7 @@ class PaymentRefundTransaction extends Transaction {
    * - amount
    * - token
    */
-  public function __construct($params = array()) {
+  public function __construct($params = []) {
     parent::__construct($params);
   }
 
