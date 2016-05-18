@@ -8,6 +8,11 @@
             "email": "travis@0x29a.ca"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Paymentree\\": "src/"
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "~6.0"
     }
