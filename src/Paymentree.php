@@ -8,7 +8,7 @@ use \DOMException;
 class Paymentree {
 
   const DEFAULT_LOCAL_IP_ADDRESS = '127.0.0.1';
-  const DEFAULT_PORT = 320000;
+  const DEFAULT_PORT = 32000;
 
   const REQUEST_TYPE = 00;
 
