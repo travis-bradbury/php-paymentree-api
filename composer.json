@@ -12,5 +12,8 @@
         "psr-4": {
             "Paymentree\\": "src/"
         }
+    },
+    "require": {
+        "clue/socket-raw": "~1.2"
     }
 }
