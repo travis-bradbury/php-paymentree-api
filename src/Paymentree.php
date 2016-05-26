@@ -152,21 +152,22 @@ class Paymentree {
   }
 
   /**
-   * @param string $ip_address
+   * @param string $host
+   *   A host name or IP address.
    * @param int $port
    * @return \Paymentree\Connection
    */
-  public static function connect($ip_address = NULL, $port = NULL) {
+  public static function connect($host = NULL, $port = NULL) {
     if (!self::$connection) {
-      if (!$ip_address) {
-        $ip_address = self::DEFAULT_LOCAL_IP_ADDRESS;
+      if (!$host) {
+        $host = self::DEFAULT_LOCAL_IP_ADDRESS;
       }
 
       if (!$port) {
         $port = self::DEFAULT_PORT;
       }
 
-      self::$connection = new Connection($ip_address, $port);
+      self::$connection = new Connection($host, $port);
     }
 
     return self::$connection;
