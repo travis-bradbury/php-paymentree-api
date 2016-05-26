@@ -72,11 +72,12 @@ class Response {
 
   /**
    * Response constructor.
-   * @param $response
+   * @param \DOMDocument $response
    * @throws \DOMException
    */
   public function __construct($response) {
     $this->type = Paymentree::RESPONSE_TYPE_GENERIC;
+    $this->document = $response;
   }
 
   /**
@@ -256,5 +257,12 @@ class Response {
   protected function setTransactionCode($code) {
     $this->transaction_code = $code;
     return $this;
+  }
+
+  /**
+   * @return \DOMDocument
+   */
+  public function getDocument() {
+    return $this->document;
   }
 }
