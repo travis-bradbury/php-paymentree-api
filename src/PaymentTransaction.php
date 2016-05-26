@@ -16,7 +16,7 @@ class PaymentTransaction extends PaymentRefundTransaction {
    * - amount
    * - token
    */
-  public function __construct($params) {
+  public function __construct($params = []) {
     parent::__construct($params);
 
     $this->action_type = Paymentree::ACTION_TYPE_PURCHASE;

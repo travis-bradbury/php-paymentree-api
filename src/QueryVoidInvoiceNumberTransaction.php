@@ -15,7 +15,7 @@ class QueryVoidInvoiceNumberTransaction extends Transaction {
    * QueryVoidInvoiceNumberTransaction constructor.
    * @param array $params
    */
-  public function __construct(array $params) {
+  public function __construct($params = []) {
     parent::__construct($params);
 
     $this->action_type = Paymentree::ACTION_TYPE_QUERY_VOID;

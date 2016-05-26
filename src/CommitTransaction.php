@@ -15,7 +15,7 @@ class CommitTransaction extends Transaction {
    * CommitTransaction constructor.
    * @param array $params
    */
-  public function __construct(array $params) {
+  public function __construct($params = []) {
     parent::__construct($params);
 
     $this->action_type = Paymentree::ACTION_TYPE_COMMIT;

@@ -15,7 +15,7 @@ class BatchCloseTransaction extends Transaction {
    * BatchCloseTransaction constructor.
    * @param array $params
    */
-  public function __construct(array $params) {
+  public function __construct($params = []) {
     parent::__construct($params);
 
     if (empty($params['terminal_no'])) {
