@@ -17,6 +17,11 @@ class Connection {
   protected $port;
 
   /**
+   * @var \Socket\Raw\Factory
+   */
+  protected $factory;
+
+  /**
    * Connection constructor.
    * @param string $host
    * @param int $port
@@ -33,18 +38,20 @@ class Connection {
    */
   public function send($data = '') {
     $response = '';
-
     $data = '<TRANS><PAYLinqTransId>1520913221307</PAYLinqTransId><CheckNo>4717</CheckNo></TRANS>';
-    $errno = NULL;
-    $errstr = NULL;
-    if ($resource = stream_socket_client('tcp://' . $this->host . ':' . $this->port, $errno, $errstr)) {
-      fwrite($resource, $data);
-      $response = fgets($resource);
-      fclose($resource);
-    }
 
-    if (!empty($errno) || !empty($errstr)) {
-      throw new \Exception($errno . ': ' . $errstr);
+    $factory = Paymentree::get_socket_factory();
+
+    $address = 'tcp://' . $this->host . ':' . $this->port;
+    $socket = $factory->createClient($address);
+    $socket->write($data);
+
+    while ($data = $socket->recv(8192, MSG_DONTWAIT)) {
+      $response .= $data;
+      // If less than the requested length was returned, we're done reading.
+      if (strlen($data) < 8192) {
+        break;
+      }
     }
 
     return $response;

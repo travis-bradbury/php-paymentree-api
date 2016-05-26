@@ -26,6 +26,11 @@ class Paymentree {
   const RESPONSE_TYPE_GIFTCARD = 'giftcard';
 
   /**
+   * @var \Socket\Raw|Factory
+   */
+  protected static $socket_factory;
+
+  /**
    * @var \Paymentree\Connection
    */
   protected static $connection;
@@ -165,6 +170,17 @@ class Paymentree {
     }
 
     return self::$connection;
+  }
+
+  /**
+   * @return \Socket\Raw|Factory
+   */
+  public static function get_socket_factory() {
+    if (!self::$socket_factory) {
+      return new \Socket\Raw\Factory();
+    }
+
+    return self::$socket_factory;
   }
 
   /**
