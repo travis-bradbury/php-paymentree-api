@@ -46,7 +46,7 @@ class Connection {
     $socket = $factory->createClient($address);
     $socket->write($data);
 
-    while ($data = $socket->recv(8192, MSG_DONTWAIT)) {
+    while ($data = $socket->recv(8192, NULL)) {
       $response .= $data;
       // If less than the requested length was returned, we're done reading.
       if (strlen($data) < 8192) {
