@@ -192,7 +192,7 @@ class Paymentree {
    */
   public static function response_class($response) {
     // Default to basic Response.
-    $class = 'Response';
+    $class = '\Paymentree\Response';
 
     $list = $response->getElementsByTagName('CardTypeUsed');
 
@@ -200,15 +200,15 @@ class Paymentree {
       $node = $list->item(0);
       switch ($node->nodeValue) {
         case 'DEBIT ACCOUNT':
-          $class = 'DebitResponse';
+          $class = '\Paymentree\DebitResponse';
           break;
         case 'GIFTCARD':
           // TODO not sure what correct case is here.
-          $class = 'GiftcardResponse';
+          $class = '\Paymentree\GiftcardResponse';
           break;
         case 'CASH':
           // TODO not sure what correct case is here.
-          $class = 'CashResponse';
+          $class = '\Paymentree\CashResponse';
           break;
       }
     }
