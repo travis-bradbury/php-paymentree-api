@@ -13,13 +13,13 @@ class Transaction {
   protected $type;
 
   /**
-   * @var int
+   * @var string
    * TODO must be required.
    */
   protected $request_type;
 
   /**
-   * @var int
+   * @var string
    * TODO must be required.
    */
   protected $action_type;
@@ -52,14 +52,14 @@ class Transaction {
   }
 
   /**
-   * @return int
+   * @return string
    */
   public function getActionType() {
     return $this->action_type;
   }
 
   /**
-   * @param int $type
+   * @param string $type
    * @return $this
    */
   public function setActionType($type) {
@@ -68,14 +68,14 @@ class Transaction {
   }
 
   /**
-   * @return int
+   * @return string
    */
   public function getRequestType() {
     return $this->request_type;
   }
 
   /**
-   * @param int $type
+   * @param string $type
    * @return $this
    */
   public function setRequestType($type) {
