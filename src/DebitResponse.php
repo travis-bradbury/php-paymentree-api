@@ -125,12 +125,12 @@ class DebitResponse extends DebitGiftcardResponse {
       $this->setTrace($number);
     }
 
-    if ($mendorsement = $this->getDocumentContent('MEndorse')) {
-      $this->setMEndorse($mendorsement);
+    if ($endorsement = $this->getDocumentContent('MEndorse')) {
+      $this->setMEndorse($endorsement);
     }
 
-    if ($mendorsement = $this->getDocumentContent('CEndorse')) {
-      $this->setCEndorse($mendorsement);
+    if ($endorsement = $this->getDocumentContent('CEndorse')) {
+      $this->setCEndorse($endorsement);
     }
 
     if ($header = $this->getDocumentContent('Header')) {
