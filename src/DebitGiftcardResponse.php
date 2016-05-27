@@ -24,6 +24,26 @@ abstract class DebitGiftcardResponse extends Response {
    */
   protected $cust_lang;
 
+  public function __construct(\DOMDocument $response) {
+    parent::__construct($response);
+
+    if ($number = $this->getDocumentContent('CardNo')) {
+      $this->setCardNumber($number);
+    }
+
+    if ($id = $this->getDocumentContent('ProviderTransID')) {
+      $this->setProviderTransactionId($id);
+    }
+
+    if ($mode = $this->getDocumentContent('Cardentrymode')) {
+      $this->setCardEntryMode($mode);
+    }
+
+    if ($language = $this->getDocumentContent('CustLang')) {
+      $this->setCustomerLanguage($language);
+    }
+  }
+
   /**
    * @return string
    */
@@ -39,7 +59,7 @@ abstract class DebitGiftcardResponse extends Response {
     $this->card_no = $number;
     return $this;
   }
-  
+
   /**
    * @return string
    */

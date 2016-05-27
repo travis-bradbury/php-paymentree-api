@@ -88,6 +88,78 @@ class DebitResponse extends DebitGiftcardResponse {
   public function __construct($response) {
     parent::__construct($response);
     $this->type = Paymentree::RESPONSE_TYPE_DEBIT;
+
+    if ($number = $this->getDocumentContent('InvoiceNumber')) {
+      $this->setInvoiceNumber($number);
+    }
+
+    if ($amount = $this->getDocumentContent('TipAmt')) {
+      $this->setTipAmount($amount);
+    }
+
+    if ($signature = $this->getDocumentContent('Signature')) {
+      $this->setSignature($signature);
+    }
+
+    if ($type = $this->getDocumentContent('MimeType')) {
+      $this->setMimeType($type);
+    }
+
+    if ($name = $this->getDocumentContent('EmvName')) {
+      $this->setEmvName($name);
+    }
+
+    if ($aid = $this->getDocumentContent('EmvAid')) {
+      $this->setEmvAid($aid);
+    }
+
+    if ($tvr = $this->getDocumentContent('EmvTvr')) {
+      $this->setEmvTvr($tvr);
+    }
+
+    if ($tsi = $this->getDocumentContent('EmvTsi')) {
+      $this->setEmvTsi($tsi);
+    }
+
+    if ($number = $this->getDocumentContent('Trace')) {
+      $this->setTrace($number);
+    }
+
+    if ($mendorsement = $this->getDocumentContent('MEndorse')) {
+      $this->setMEndorse($mendorsement);
+    }
+
+    if ($mendorsement = $this->getDocumentContent('CEndorse')) {
+      $this->setCEndorse($mendorsement);
+    }
+
+    if ($header = $this->getDocumentContent('Header')) {
+      $this->setHeader($header);
+    }
+
+    if ($footer = $this->getDocumentContent('Footer')) {
+      $this->setFooter($footer);
+    }
+
+    if ($account = $this->getDocumentContent('Account')) {
+      $this->setAccount($account);
+    }
+
+    if ($header = $this->getDocumentContent('Header')) {
+      $this->setHeader($header);
+    }
+
+    if ($header = $this->getDocumentContent('Header')) {
+      $this->setHeader($header);
+    }
+
+    if ($token = $this->getDocumentContent('Token')) {
+      $this->setToken($token);
+    }
+
+    if ($expiry = $this->getDocumentContent('TokenExp')) {
+      $this->setTokenExpiry($expiry);
+    }
   }
 
   /**
