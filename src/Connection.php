@@ -38,7 +38,6 @@ class Connection {
    */
   public function send($data = '') {
     $response = '';
-    $data = '<TRANS><PAYLinqTransId>1520913221307</PAYLinqTransId><CheckNo>4717</CheckNo></TRANS>';
 
     $factory = Paymentree::get_socket_factory();
 
