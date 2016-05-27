@@ -109,7 +109,7 @@ class Transaction {
   }
 
   /**
-   * @return \Paymentree\Response
+   * @return \Paymentree\Response|DebitResponse|GiftcardResponse|CashResponse
    */
   public function send() {
     $connection = Paymentree::connect();

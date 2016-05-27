@@ -218,7 +218,7 @@ class Paymentree {
 
   /**
    * @param $response
-   * @return \Paymentree\Response
+   * @return \Paymentree\Response|DebitResponse|GiftcardResponse|CashResponse
    * @throws \DOMException
    */
   public static function load_response($response) {
