@@ -22,6 +22,22 @@ class CommitTransaction extends Transaction {
   }
 
   /**
+   * @return string
+   */
+  public function getReqTransId() {
+    return $this->req_trans_id;
+  }
+
+  /**
+   * @param string $req_trans_id
+   * @return $this
+   */
+  public function setReqTransId($req_trans_id) {
+    $this->req_trans_id = $req_trans_id;
+    return $this;
+  }
+
+  /**
    * @param \DOMDocument|NULL $document
    * @return \DOMDocument
    */
