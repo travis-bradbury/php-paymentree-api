@@ -22,6 +22,16 @@ class Connection {
   protected $factory;
 
   /**
+   * @var string
+   */
+  protected $last_request;
+
+  /**
+   * @var string
+   */
+  protected $last_response;
+
+  /**
    * Connection constructor.
    * @param string $host
    * @param int $port
@@ -39,6 +49,8 @@ class Connection {
   public function send($data = '') {
     $response = '';
 
+    $this->setLastRequest($data);
+
     $factory = Paymentree::get_socket_factory();
 
     $address = 'tcp://' . $this->host . ':' . $this->port;
@@ -53,6 +65,42 @@ class Connection {
       }
     }
 
+    $this->setLastResponse($response);
+
     return $response;
+  }
+
+  /**
+   * Get the raw data send in the last request.
+   * @return string
+   */
+  public function getLastRequest() {
+    return $this->last_request;
+  }
+
+  /**
+   * @param string $request
+   * @return $this
+   */
+  protected function setLastRequest($request) {
+    $this->last_request = $request;
+    return $this;
+  }
+
+  /**
+   * Get the raw data received in the last request.
+   * @return string
+   */
+  public function getLastResponse() {
+    return $this->last_response;
+  }
+
+  /**
+   * @param string $response
+   * @return $this
+   */
+  protected function setLastResponse($response) {
+    $this->last_response = $response;
+    return $this;
   }
 }

@@ -258,4 +258,20 @@ class Paymentree {
   public static function terminal_ids($message) {
     return explode('^', $message);
   }
+
+  /**
+   * Get the raw data received in the last request.
+   * @return string
+   */
+  public static function getLastRequest() {
+    return self::$connection->getLastRequest();
+  }
+
+  /**
+   * Get the raw data received in the last response.
+   * @return string
+   */
+  public static function getLastResponse() {
+    return self::$connection->getLastResponse();
+  }
 }
