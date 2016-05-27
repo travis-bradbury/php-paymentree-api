@@ -87,7 +87,7 @@ class Transaction {
    * @param \DOMDocument $document
    * @return \DOMDocument
    */
-  public function to_node(DOMDocument $document = NULL) {
+  public function toNode(DOMDocument $document = NULL) {
     if (!$document) {
       $document = new DOMDocument();
     }
@@ -104,8 +104,8 @@ class Transaction {
   /**
    * @return string
    */
-  public function to_string() {
-    return $this->to_node()->saveXML();
+  public function toString() {
+    return $this->toNode()->saveXML();
   }
 
   /**
@@ -113,7 +113,7 @@ class Transaction {
    */
   public function send() {
     $connection = Paymentree::connect();
-    $response = $connection->send($this->to_string());
+    $response = $connection->send($this->toString());
     return Paymentree::load_response($response);
   }
 }

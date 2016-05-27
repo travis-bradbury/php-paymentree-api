@@ -159,8 +159,8 @@ class PaymentRefundTransaction extends Transaction {
    * @param \DOMDocument|NULL $document
    * @return \DOMDocument
    */
-  public function to_node(DOMDocument $document = NULL) {
-    $document = parent::to_node($document);
+  public function toNode(DOMDocument $document = NULL) {
+    $document = parent::toNode($document);
 
     if (isset($this->client)) {
       $document->appendChild($document->createElement('CLIENT', $this->client));

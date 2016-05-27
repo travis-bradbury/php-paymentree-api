@@ -25,8 +25,8 @@ class CommitTransaction extends Transaction {
    * @param \DOMDocument|NULL $document
    * @return \DOMDocument
    */
-  public function to_node(DOMDocument $document = NULL) {
-    $document = parent::to_node($document);
+  public function toNode(DOMDocument $document = NULL) {
+    $document = parent::toNode($document);
 
     $document->appendChild($document->createElement('REQ_TRANS_ID', $this->req_trans_id));
 
