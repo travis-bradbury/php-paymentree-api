@@ -178,7 +178,7 @@ class Paymentree {
    */
   public static function get_socket_factory() {
     if (!self::$socket_factory) {
-      return new \Socket\Raw\Factory();
+      self::$socket_factory = new \Socket\Raw\Factory();
     }
 
     return self::$socket_factory;
