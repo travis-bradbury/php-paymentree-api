@@ -191,6 +191,10 @@ class PaymentRefundTransaction extends Transaction {
       $document->appendChild($document->createElement('LOCATION', $this->location));
     }
 
+    if (isset($this->register)) {
+      $document->appendChild($document->createElement('REGISTER', $this->register));
+    }
+
     if (isset($this->cashier)) {
       $document->appendChild($document->createElement('CASHIER', $this->cashier));
     }
@@ -206,5 +210,7 @@ class PaymentRefundTransaction extends Transaction {
     if (isset($this->token)) {
       $document->appendChild($document->createElement('TOKEN', $this->token));
     }
+
+    return $document;
   }
 }
