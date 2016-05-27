@@ -12,6 +12,11 @@ class VoidTransaction extends PaymentRefundTransaction {
   protected $trans_id_to_void;
 
   /**
+   * @var string
+   */
+  protected $register;
+
+  /**
    * VoidTransaction constructor.
    * @param array $params
    * Values for the transaction. Possible keys are:
@@ -28,6 +33,38 @@ class VoidTransaction extends PaymentRefundTransaction {
     parent::__construct($params);
 
     $this->action_type = Paymentree::ACTION_TYPE_PURCHASE;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTransIdToVoid() {
+    return $this->trans_id_to_void;
+  }
+
+  /**
+   * @param string $id
+   * @return $this
+   */
+  public function setTransIdToVoid($id) {
+    $this->trans_id_to_void = $id;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getRegister() {
+    return $this->register;
+  }
+
+  /**
+   * @param string $register
+   * @return $this
+   */
+  public function setRegister($register) {
+    $this->register = $register;
+    return $this;
   }
 
   /**

@@ -24,6 +24,11 @@ class PaymentRefundTransaction extends Transaction {
 
   /**
    * @var string
+   */
+  protected $register;
+
+  /**
+   * @var string
    * The Transaction ID from the POS.
    * TODO required
    */
@@ -104,6 +109,22 @@ class PaymentRefundTransaction extends Transaction {
    */
   public function setCashier($cashier) {
     $this->cashier = $cashier;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getRegister() {
+    return $this->register;
+  }
+
+  /**
+   * @param string $register
+   * @return $this
+   */
+  public function setRegister($register) {
+    $this->register = $register;
     return $this;
   }
 
