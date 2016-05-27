@@ -78,6 +78,74 @@ class Response {
   public function __construct($response) {
     $this->type = Paymentree::RESPONSE_TYPE_GENERIC;
     $this->document = $response;
+
+    if ($id = $this->getDocumentContent('PAYLinqTransId')) {
+      $this->setPayLinqTransactionId($id);
+    }
+
+    if ($code = $this->getDocumentContent('TransRespCode')) {
+      $this->setTransactionCode($code);
+    }
+
+    if ($message = $this->getDocumentContent('TransRespMsg')) {
+      $this->setResponseMessage($message);
+    }
+
+    if ($type = $this->getDocumentContent('CardTypeUsed')) {
+      $this->setCardType($type);
+    }
+
+    if ($number = $this->getDocumentContent('CheckNo')) {
+      $this->setChequeNumber($number);
+    }
+
+    if ($amount = $this->getDocumentContent('ProcessedAmount')) {
+      $this->setProcessedAmount((int) $amount);
+    }
+
+    if ($code = $this->getDocumentContent('CardCode')) {
+      $this->setCardCode($code);
+    }
+
+    if ($receipt = $this->getDocumentContent('MerchantReceipt')) {
+      $this->setMerchantReceipt($receipt);
+    }
+
+    if ($receipt = $this->getDocumentContent('CustomerReceipt')) {
+      $this->setCustomerReceipt($receipt);
+    }
+  }
+
+  /**
+   * Get the value of a node in the response's XML.
+   * This takes only the value of the first tag; use getDocumentContentMultiple
+   * if you expect more.
+   * @param $tagName
+   * @return string|NULL
+   */
+  protected function getDocumentContent($tagName) {
+    $list = $this->document->getElementsByTagName($tagName);
+    if ($item = $list->item(0)) {
+      return $item->nodeValue;
+    };
+    return NULL;
+  }
+
+  /**
+   * Get the contents of tags in the response's XML.
+   * @param $tagName
+   * @return array
+   */
+  protected function getDocumentContentMultiple($tagName) {
+    $content = [];
+
+    $list = $this->document->getElementsByTagName($tagName);
+    for ($i = 0; $i < $list->length; $i++) {
+      $item = $list->item($i);
+      if ($value = $item->nodeValue) {
+        $content[] = $value;
+      }
+    }
   }
 
   /**
@@ -186,7 +254,7 @@ class Response {
   }
 
   /**
-   * @param $amount
+   * @param int $amount
    * @return $this
    */
   protected function setProcessedAmount($amount) {
