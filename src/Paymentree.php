@@ -26,7 +26,7 @@ class Paymentree {
   const RESPONSE_TYPE_GIFTCARD = 'giftcard';
 
   /**
-   * @var \Socket\Raw|Factory
+   * @var \Socket\Raw\Factory
    */
   protected static $socket_factory;
 
@@ -34,6 +34,11 @@ class Paymentree {
    * @var \Paymentree\Connection
    */
   protected static $connection;
+
+  /**
+   * @var \Paymentree\Transaction
+   */
+  protected static $last_transaction;
 
   /**
    * @var int
@@ -273,5 +278,24 @@ class Paymentree {
    */
   public static function getLastResponse() {
     return self::$connection->getLastResponse();
+  }
+
+  /**
+   * @param Transaction $transaction
+   */
+  public static function setLastTransaction($transaction) {
+    self::$last_transaction = $transaction;
+  }
+
+  /**
+   * Get the type of the last transaction sent.
+   * @return null|string
+   */
+  public static function lastTransactionType() {
+    if (isset(self::$last_transaction)) {
+      return self::$last_transaction->getType();
+    }
+
+    return NULL;
   }
 }

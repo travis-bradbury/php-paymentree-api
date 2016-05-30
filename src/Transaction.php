@@ -112,6 +112,7 @@ class Transaction {
    * @return \Paymentree\Response|DebitResponse|GiftcardResponse|CashResponse
    */
   public function send() {
+    Paymentree::setLastTransaction($this);
     $connection = Paymentree::connect();
     $response = $connection->send($this->toString());
     return Paymentree::load_response($response);
