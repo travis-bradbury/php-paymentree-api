@@ -22,7 +22,7 @@ class Transaction implements TransactionInterface {
    * @var DOMNode[]
    *   An array of DOMNodes to be appended to the transaction XML.
    */
-  protected $childNodes;
+  protected $child_nodes;
 
   /**
    * @var string
@@ -114,7 +114,7 @@ class Transaction implements TransactionInterface {
    * @return $this
    */
   protected function addChildNode(DOMNode $node) {
-    $this->childNodes[] = $node;
+    $this->child_nodes[] = $node;
     return $this;
   }
 
@@ -122,7 +122,7 @@ class Transaction implements TransactionInterface {
    * @return DOMNode[]
    */
   protected function getNodes() {
-    return $this->childNodes;
+    return $this->child_nodes;
   }
 
   /**
