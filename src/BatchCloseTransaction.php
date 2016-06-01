@@ -13,14 +13,12 @@ class BatchCloseTransaction extends Transaction {
 
   /**
    * BatchCloseTransaction constructor.
-   * @param array $params
+   * @param string $terminal_number
    */
-  public function __construct($params = []) {
-    parent::__construct($params);
+  public function __construct($terminal_number = 'all') {
+    parent::__construct();
 
-    if (empty($params['terminal_no'])) {
-      $this->terminal_no = 'all';
-    }
+    $this->setTerminal($terminal_number);
 
     $this->action_type = Paymentree::ACTION_TYPE_TERMINAL_CLOSE;
   }

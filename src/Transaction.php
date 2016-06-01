@@ -26,21 +26,9 @@ class Transaction {
 
   /**
    * Transaction constructor.
-   * @param array $params
-   * An array of parameters to add to the transaction.
    */
-  public function __construct($params = []) {
+  public function __construct() {
     $this->request_type = Paymentree::REQUEST_TYPE;
-
-    // TODO this allows overriding properties that it shouldn't. $type, for one.
-    foreach($params as $key => $value) {
-      if(isset($this->$key)) {
-        $this->$key = $value;
-      }
-      else {
-        throw new \InvalidArgumentException($key . ' is not a valid parameter for a transaction of type ' . $this->getType() . '.');
-      }
-    }
   }
 
   /**

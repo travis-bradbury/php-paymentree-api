@@ -48,20 +48,9 @@ class PaymentRefundTransaction extends Transaction {
 
   /**
    * PaymentRefundTransaction constructor.
-   * @param array $params
-   * Values for the transaction. Possible keys are:
-   * - client
-   * - location
-   * - register
-   * - cashier
-   * - req_trans_id
-   * - request_type
-   * - action_type
-   * - amount
-   * - token
    */
-  public function __construct($params = []) {
-    parent::__construct($params);
+  public function __construct() {
+    parent::__construct();
   }
 
   /**
