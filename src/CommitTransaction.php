@@ -37,13 +37,12 @@ class CommitTransaction extends Transaction {
   }
 
   /**
-   * @param \DOMDocument|NULL $document
    * @return \DOMDocument
    */
-  public function toNode(DOMDocument $document = NULL) {
-    $document = parent::toNode($document);
+  public function toNode() {
+    $document = parent::toNode();
 
-    $document->appendChild($document->createElement('REQ_TRANS_ID', $this->req_trans_id));
+    $document->appendChild($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
 
     return $document;
   }

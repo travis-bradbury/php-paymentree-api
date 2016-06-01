@@ -13,6 +13,11 @@ class Transaction implements TransactionInterface {
   protected $type;
 
   /**
+   * @var \DOMDocument
+   */
+  protected $document;
+
+  /**
    * @var string
    */
   protected $request_type;
@@ -70,21 +75,32 @@ class Transaction implements TransactionInterface {
   }
 
   /**
-   * @param \DOMDocument $document
    * @return \DOMDocument
    */
-  public function toNode(DOMDocument $document = NULL) {
-    if (!$document) {
-      $document = new DOMDocument();
+  public function toNode() {
+    if (!$this->document) {
+      $this->document = new DOMDocument();
     }
 
-    $node = $document->createElement('TRANS');
-    $node->appendChild($document->createElement('REQUEST_TYPE', $this->request_type));
-    $node->appendChild($document->createElement('ACTION_TYPE', $this->action_type));
+    $node = $this->document->createElement('TRANS');
+    $node->appendChild($this->createEscapedElement('REQUEST_TYPE', $this->request_type));
+    $node->appendChild($this->createEscapedElement('ACTION_TYPE', $this->action_type));
+    $this->document->appendChild($node);
 
-    $document->appendChild($node);
+    return $this->document;
+  }
 
-    return $document;
+  /**
+   * Helper for creating an element with escaped content.
+   * @param string $element
+   * @param string $value
+   * @return \DOMElement
+   */
+  protected function createEscapedElement($element, $value) {
+    $node = $this->document->createElement($element);
+    $content = $this->document->createTextNode($value);
+    $node->appendChild($content);
+    return $node;
   }
 
   /**
