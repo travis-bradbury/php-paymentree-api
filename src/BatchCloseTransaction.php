@@ -40,13 +40,10 @@ class BatchCloseTransaction extends Transaction {
   }
 
   /**
-   * @return \DOMDocument
+   * Create nodes for the appropriate properties of the transaction.
    */
-  public function toNode() {
-    $document = parent::toNode();
-
-    $document->appendChild($this->createEscapedElement('TERMINAL_NO', $this->terminal_no));
-
-    return $document;
+  protected function createNodes() {
+    parent::createNodes();
+    $this->addChildNode($this->createEscapedElement('TERMINAL_NO', $this->terminal_no));
   }
 }

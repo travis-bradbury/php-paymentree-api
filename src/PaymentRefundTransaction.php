@@ -164,39 +164,37 @@ class PaymentRefundTransaction extends Transaction {
   }
 
   /**
-   * @return \DOMDocument
+   * Create nodes for the appropriate properties of the transaction.
    */
-  public function toNode() {
-    $document = parent::toNode();
+  protected function createNodes() {
+    parent::createNodes();
 
     if (isset($this->client)) {
-      $document->appendChild($this->createEscapedElement('CLIENT', $this->client));
+      $this->addChildNode($this->createEscapedElement('CLIENT', $this->client));
     }
 
     if (isset($this->location)) {
-      $document->appendChild($this->createEscapedElement('LOCATION', $this->location));
+      $this->addChildNode($this->createEscapedElement('LOCATION', $this->location));
     }
 
     if (isset($this->register)) {
-      $document->appendChild($this->createEscapedElement('REGISTER', $this->register));
+      $this->addChildNode($this->createEscapedElement('REGISTER', $this->register));
     }
 
     if (isset($this->cashier)) {
-      $document->appendChild($this->createEscapedElement('CASHIER', $this->cashier));
+      $this->addChildNode($this->createEscapedElement('CASHIER', $this->cashier));
     }
 
     if (isset($this->req_trans_id)) {
-      $document->appendChild($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
+      $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
     }
 
     if (isset($this->amount)) {
-      $document->appendChild($this->createEscapedElement('AMOUNT', $this->amount));
+      $this->addChildNode($this->createEscapedElement('AMOUNT', $this->amount));
     }
 
     if (isset($this->token)) {
-      $document->appendChild($this->createEscapedElement('TOKEN', $this->token));
+      $this->addChildNode($this->createEscapedElement('TOKEN', $this->token));
     }
-
-    return $document;
   }
 }

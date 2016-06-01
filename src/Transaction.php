@@ -3,6 +3,7 @@
 namespace Paymentree;
 
 use DOMDocument;
+use DOMNode;
 
 class Transaction implements TransactionInterface {
 
@@ -18,6 +19,12 @@ class Transaction implements TransactionInterface {
   protected $document;
 
   /**
+   * @var DOMNode[]
+   *   An array of DOMNodes to be appended to the transaction XML.
+   */
+  protected $childNodes;
+
+  /**
    * @var string
    */
   protected $request_type;
@@ -31,6 +38,8 @@ class Transaction implements TransactionInterface {
    * Transaction constructor.
    */
   public function __construct() {
+    $this->document = new DOMDocument();
+
     $this->request_type = Paymentree::REQUEST_TYPE;
   }
 
@@ -78,16 +87,42 @@ class Transaction implements TransactionInterface {
    * @return \DOMDocument
    */
   public function toNode() {
-    if (!$this->document) {
-      $this->document = new DOMDocument();
+    $root_element = $this->document->createElement('TRANS');
+
+    // Generate all child nodes.
+    $this->createNodes();
+
+    foreach ($this->getNodes() as $node) {
+      $root_element->appendChild($node);
     }
 
-    $node = $this->document->createElement('TRANS');
-    $node->appendChild($this->createEscapedElement('REQUEST_TYPE', $this->request_type));
-    $node->appendChild($this->createEscapedElement('ACTION_TYPE', $this->action_type));
-    $this->document->appendChild($node);
+    $this->document->appendChild($root_element);
 
     return $this->document;
+  }
+
+  /**
+   * Create nodes for the appropriate properties of the transaction.
+   */
+  protected function createNodes() {
+    $this->addChildNode($this->createEscapedElement('REQUEST_TYPE', $this->request_type));
+    $this->addChildNode($this->createEscapedElement('ACTION_TYPE', $this->action_type));
+  }
+
+  /**
+   * @param \DOMNode $node
+   * @return $this
+   */
+  protected function addChildNode(DOMNode $node) {
+    $this->childNodes[] = $node;
+    return $this;
+  }
+
+  /**
+   * @return DOMNode[]
+   */
+  protected function getNodes() {
+    return $this->childNodes;
   }
 
   /**
@@ -107,7 +142,8 @@ class Transaction implements TransactionInterface {
    * @return string
    */
   public function toString() {
-    return $this->toNode()->saveXML();
+    $xml = $this->toNode()->saveXML();
+    return trim(preg_replace('/<\?xml.*?>\w?/', '', $xml));
   }
 
   /**

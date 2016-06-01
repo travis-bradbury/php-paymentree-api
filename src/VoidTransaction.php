@@ -58,13 +58,10 @@ class VoidTransaction extends PaymentRefundTransaction {
   }
 
   /**
-   * @return \DOMDocument
+   * Create nodes for the appropriate properties of the transaction.
    */
-  public function toNode() {
-    $document = parent::toNode();
-
-    $document->appendChild($this->createEscapedElement('TRANS_ID_TO_VOID', $this->trans_id_to_void));
-
-    return $document;
+  protected function createNodes() {
+    parent::createNodes();
+    $this->addChildNode($this->createEscapedElement('TRANS_ID_TO_VOID', $this->trans_id_to_void));
   }
 }

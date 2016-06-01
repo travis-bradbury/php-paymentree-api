@@ -21,13 +21,10 @@ class QueryVoidInvoiceNumberTransaction extends Transaction {
   }
 
   /**
-   * @return \DOMDocument
+   * Create nodes for the appropriate properties of the transaction.
    */
-  public function toNode() {
-    $document = parent::toNode();
-
-    $document->appendChild($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
-
-    return $document;
+  protected function createNodes() {
+    parent::createNodes();
+    $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
   }
 }
