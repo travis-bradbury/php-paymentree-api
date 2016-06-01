@@ -51,7 +51,7 @@ class Connection {
 
     $this->setLastRequest($data);
 
-    $factory = Paymentree::get_socket_factory();
+    $factory = Paymentree::getSocketFactory();
 
     $address = 'tcp://' . $this->host . ':' . $this->port;
     $socket = $factory->createClient($address);

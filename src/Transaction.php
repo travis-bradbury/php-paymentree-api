@@ -115,6 +115,6 @@ class Transaction {
     Paymentree::setLastTransaction($this);
     $connection = Paymentree::connect();
     $response = $connection->send($this->toString());
-    return Paymentree::load_response($response);
+    return Paymentree::loadResponse($response);
   }
 }

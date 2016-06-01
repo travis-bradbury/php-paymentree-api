@@ -137,7 +137,7 @@ class Paymentree {
    * @param $code
    * @return string
    */
-  public static function response_code_message($code) {
+  public static function responseCodeMessage($code) {
     $codes = self::RESPONSE_CODES;
     if (isset($codes[$code])) {
       return $codes[$code];
@@ -152,7 +152,7 @@ class Paymentree {
    * @param $code
    * @return bool
    */
-  public static function is_successful($code) {
+  public static function isSuccessful($code) {
     return $code === self::RESPONSE_CODE_SUCCESSFUL;
   }
 
@@ -181,7 +181,7 @@ class Paymentree {
   /**
    * @return \Socket\Raw|Factory
    */
-  public static function get_socket_factory() {
+  public static function getSocketFactory() {
     if (!self::$socket_factory) {
       self::$socket_factory = new \Socket\Raw\Factory();
     }
@@ -195,7 +195,7 @@ class Paymentree {
    * @return string
    * The name of the class to use for the response.
    */
-  public static function response_class($response) {
+  public static function responseClass($response) {
     // Default to basic Response.
     $class = '\Paymentree\Response';
 
@@ -226,7 +226,7 @@ class Paymentree {
    * @return \Paymentree\Response|DebitResponse|GiftcardResponse|CashResponse
    * @throws \DOMException
    */
-  public static function load_response($response) {
+  public static function loadResponse($response) {
     // loadXML reports an error if XML is not well formed. Handle the error by
     // throwing an exception.
     set_error_handler(function($errno, $errstr, $errfile, $errline) {
@@ -247,7 +247,7 @@ class Paymentree {
     }
     restore_error_handler();
 
-    $class = self::response_class($document);
+    $class = self::responseClass($document);
     return new $class($document);
   }
 
@@ -260,7 +260,7 @@ class Paymentree {
    * @param string $message
    * @return array
    */
-  public static function terminal_ids($message) {
+  public static function terminalIds($message) {
     return explode('^', $message);
   }
 
