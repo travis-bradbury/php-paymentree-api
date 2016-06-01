@@ -4,7 +4,7 @@ namespace Paymentree;
 
 use DOMDocument;
 
-class Transaction {
+class Transaction implements TransactionInterface {
 
   /**
    * @var string
@@ -14,13 +14,11 @@ class Transaction {
 
   /**
    * @var string
-   * TODO must be required.
    */
   protected $request_type;
 
   /**
    * @var string
-   * TODO must be required.
    */
   protected $action_type;
 
@@ -97,7 +95,7 @@ class Transaction {
   }
 
   /**
-   * @return \Paymentree\Response|DebitResponse|GiftcardResponse|CashResponse
+   * @return \Paymentree\ResponseInterface
    */
   public function send() {
     Paymentree::setLastTransaction($this);

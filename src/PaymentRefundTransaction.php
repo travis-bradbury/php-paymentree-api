@@ -30,14 +30,12 @@ class PaymentRefundTransaction extends Transaction {
   /**
    * @var string
    * The Transaction ID from the POS.
-   * TODO required
    */
   protected $req_trans_id;
 
   /**
    * @var int
    * An amount in cents.
-   * TODO required
    */
   protected $amount;
 

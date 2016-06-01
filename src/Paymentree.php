@@ -36,7 +36,7 @@ class Paymentree {
   protected static $connection;
 
   /**
-   * @var \Paymentree\Transaction
+   * @var \Paymentree\TransactionInterface
    */
   protected static $last_transaction;
 
@@ -222,8 +222,9 @@ class Paymentree {
   }
 
   /**
-   * @param $response
-   * @return \Paymentree\Response|DebitResponse|GiftcardResponse|CashResponse
+   * Load an XML response into a Response object.
+   * @param string $response
+   * @return \Paymentree\ResponseInterface
    * @throws \DOMException
    */
   public static function loadResponse($response) {
@@ -281,9 +282,9 @@ class Paymentree {
   }
 
   /**
-   * @param Transaction $transaction
+   * @param TransactionInterface $transaction
    */
-  public static function setLastTransaction($transaction) {
+  public static function setLastTransaction(TransactionInterface $transaction) {
     self::$last_transaction = $transaction;
   }
 

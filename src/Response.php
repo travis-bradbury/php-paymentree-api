@@ -75,7 +75,7 @@ class Response {
    * @param \DOMDocument $response
    * @throws \DOMException
    */
-  public function __construct($response) {
+  public function __construct(DOMDocument $response) {
     $this->type = Paymentree::RESPONSE_TYPE_GENERIC;
     $this->document = $response;
 
@@ -120,7 +120,7 @@ class Response {
    * Get the value of a node in the response's XML.
    * This takes only the value of the first tag; use getDocumentContentMultiple
    * if you expect more.
-   * @param $tagName
+   * @param string $tagName
    * @return string|NULL
    */
   protected function getDocumentContent($tagName) {
@@ -174,7 +174,7 @@ class Response {
 
   /**
    * @param $number
-   * @return \Paymentree\Response
+   * @return $this
    */
   protected function setCheckNumber($number) {
     return $this->setChequeNumber($number);
