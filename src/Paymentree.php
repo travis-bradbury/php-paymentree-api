@@ -179,7 +179,7 @@ class Paymentree {
   }
 
   /**
-   * @return \Socket\Raw|Factory
+   * @return \Socket\Raw\Factory
    */
   public static function getSocketFactory() {
     if (!self::$socket_factory) {
