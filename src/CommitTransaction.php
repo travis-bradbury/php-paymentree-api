@@ -2,8 +2,6 @@
 
 namespace Paymentree;
 
-use DOMDocument;
-
 class CommitTransaction extends Transaction {
 
   /**
@@ -41,6 +39,6 @@ class CommitTransaction extends Transaction {
    */
   protected function createNodes() {
     parent::createNodes();
-    $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
+    $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->getReqTransId()));
   }
 }

@@ -105,8 +105,8 @@ class Transaction implements TransactionInterface {
    * Create nodes for the appropriate properties of the transaction.
    */
   protected function createNodes() {
-    $this->addChildNode($this->createEscapedElement('REQUEST_TYPE', $this->request_type));
-    $this->addChildNode($this->createEscapedElement('ACTION_TYPE', $this->action_type));
+    $this->addChildNode($this->createEscapedElement('REQUEST_TYPE', $this->getRequestType()));
+    $this->addChildNode($this->createEscapedElement('ACTION_TYPE', $this->getActionType()));
   }
 
   /**

@@ -2,8 +2,6 @@
 
 namespace Paymentree;
 
-use DOMDocument;
-
 class PaymentRefundTransaction extends Transaction {
 
   /**
@@ -169,32 +167,32 @@ class PaymentRefundTransaction extends Transaction {
   protected function createNodes() {
     parent::createNodes();
 
-    if (isset($this->client)) {
-      $this->addChildNode($this->createEscapedElement('CLIENT', $this->client));
+    if ($this->getClient()) {
+      $this->addChildNode($this->createEscapedElement('CLIENT', $this->getClient()));
     }
 
-    if (isset($this->location)) {
-      $this->addChildNode($this->createEscapedElement('LOCATION', $this->location));
+    if ($this->getLocation()) {
+      $this->addChildNode($this->createEscapedElement('LOCATION', $this->getLocation()));
     }
 
-    if (isset($this->register)) {
-      $this->addChildNode($this->createEscapedElement('REGISTER', $this->register));
+    if ($this->getRegister()) {
+      $this->addChildNode($this->createEscapedElement('REGISTER', $this->getRegister()));
     }
 
-    if (isset($this->cashier)) {
-      $this->addChildNode($this->createEscapedElement('CASHIER', $this->cashier));
+    if ($this->getCashier()) {
+      $this->addChildNode($this->createEscapedElement('CASHIER', $this->getCashier()));
     }
 
-    if (isset($this->req_trans_id)) {
-      $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
+    if ($this->getReqTransId()) {
+      $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->getReqTransId()));
     }
 
-    if (isset($this->amount)) {
-      $this->addChildNode($this->createEscapedElement('AMOUNT', $this->amount));
+    if ($this->getAmount()) {
+      $this->addChildNode($this->createEscapedElement('AMOUNT', $this->getAmount()));
     }
 
-    if (isset($this->token)) {
-      $this->addChildNode($this->createEscapedElement('TOKEN', $this->token));
+    if ($this->getToken()) {
+      $this->addChildNode($this->createEscapedElement('TOKEN', $this->getToken()));
     }
   }
 }

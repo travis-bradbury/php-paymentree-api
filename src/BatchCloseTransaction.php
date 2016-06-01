@@ -2,8 +2,6 @@
 
 namespace Paymentree;
 
-use DOMDocument;
-
 class BatchCloseTransaction extends Transaction {
 
   /**
@@ -44,6 +42,6 @@ class BatchCloseTransaction extends Transaction {
    */
   protected function createNodes() {
     parent::createNodes();
-    $this->addChildNode($this->createEscapedElement('TERMINAL_NO', $this->terminal_no));
+    $this->addChildNode($this->createEscapedElement('TERMINAL_NO', $this->getTerminal()));
   }
 }

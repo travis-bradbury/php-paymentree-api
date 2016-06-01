@@ -2,8 +2,6 @@
 
 namespace Paymentree;
 
-use DOMDocument;
-
 class VoidTransaction extends PaymentRefundTransaction {
 
   /**
@@ -62,6 +60,6 @@ class VoidTransaction extends PaymentRefundTransaction {
    */
   protected function createNodes() {
     parent::createNodes();
-    $this->addChildNode($this->createEscapedElement('TRANS_ID_TO_VOID', $this->trans_id_to_void));
+    $this->addChildNode($this->createEscapedElement('TRANS_ID_TO_VOID', $this->getTransIdToVoid()));
   }
 }

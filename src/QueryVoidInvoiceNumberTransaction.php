@@ -2,8 +2,6 @@
 
 namespace Paymentree;
 
-use DOMDocument;
-
 class QueryVoidInvoiceNumberTransaction extends Transaction {
 
   /**
@@ -21,10 +19,26 @@ class QueryVoidInvoiceNumberTransaction extends Transaction {
   }
 
   /**
+   * @return string
+   */
+  public function getReqTransId() {
+    return $this->req_trans_id;
+  }
+
+  /**
+   * @param string $req_trans_id
+   * @return $this
+   */
+  public function setReqTransId($req_trans_id) {
+    $this->req_trans_id = $req_trans_id;
+    return $this;
+  }
+
+  /**
    * Create nodes for the appropriate properties of the transaction.
    */
   protected function createNodes() {
     parent::createNodes();
-    $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->req_trans_id));
+    $this->addChildNode($this->createEscapedElement('REQ_TRANS_ID', $this->getReqTransId()));
   }
 }
