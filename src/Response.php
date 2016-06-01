@@ -10,7 +10,7 @@ class Response {
   /**
    * @var string
    */
-  public $type;
+  protected $type;
 
   /**
    * @var string
@@ -146,6 +146,13 @@ class Response {
         $content[] = $value;
       }
     }
+  }
+
+  /**
+   * @return string
+   */
+  public function getType() {
+    return $this->type;
   }
 
   /**
