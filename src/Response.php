@@ -83,8 +83,8 @@ class Response {
       $this->setPayLinqTransactionId($id);
     }
 
-    if ($code = $this->getDocumentContent('TransRespCode')) {
-      $this->setTransactionCode($code);
+    if (FALSE !== $code = $this->getDocumentContent('TransRespCode')) {
+      $this->setResponseCode($code);
     }
 
     if ($message = $this->getDocumentContent('TransRespMsg')) {
@@ -216,7 +216,7 @@ class Response {
    * @return $this
    */
   protected function setResponseCode($id) {
-    $this->pay_linq_trans_id = $id;
+    $this->trans_resp_code = $id;
     return $this;
   }
 
