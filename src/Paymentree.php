@@ -46,7 +46,7 @@ class Paymentree {
    * successful.
    * Eg: `if ($code === Paymentree::$RESPONSE_CODE_SUCCESSFUL) {`
    */
-  const RESPONSE_CODE_SUCCESSFUL = 0;
+  const RESPONSE_CODE_SUCCESSFUL = "0";
 
   /**
    * @var array
