@@ -142,9 +142,8 @@ class Paymentree {
     if (isset($codes[$code])) {
       return $codes[$code];
     }
-    else {
-      return "Unknown";
-    }
+
+    return "Unknown";
   }
 
   /**
