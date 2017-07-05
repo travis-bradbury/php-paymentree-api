@@ -65,6 +65,16 @@ class Response {
   protected $transaction_code;
 
   /**
+   * @var string
+   */
+  protected $terminal_reference;
+
+  /**
+   * @var string
+   */
+  protected $terminal_id;
+
+  /**
    * @var \DOMDocument
    * A DOMDocument object representing the response.
    */
@@ -113,6 +123,14 @@ class Response {
 
     if ($receipt = $this->getDocumentContent('CustomerReceipt')) {
       $this->setCustomerReceipt($receipt);
+    }
+
+    if ($reference = $this->getDocumentContent('TerminalReference')) {
+      $this->setTerminalReference($reference);
+    }
+
+    if ($id = $this->getDocumentContent('TerminalID')) {
+      $this->setTerminalId($id);
     }
   }
 
@@ -331,6 +349,38 @@ class Response {
    */
   protected function setTransactionCode($code) {
     $this->transaction_code = $code;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTerminalReference() {
+    return $this->terminal_reference;
+  }
+
+  /**
+   * @param string $reference
+   * @return $this
+   */
+  protected function setTerminalReference($reference) {
+    $this->transaction_code = $reference;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTerminalId() {
+    return $this->terminal_id;
+  }
+
+  /**
+   * @param string $id
+   * @return $this
+   */
+  protected function setTerminalId($id) {
+    $this->terminal_id = $id;
     return $this;
   }
 
