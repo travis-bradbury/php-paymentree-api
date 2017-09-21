@@ -85,6 +85,16 @@ class DebitResponse extends DebitGiftcardResponse {
    */
   protected $token_exp;
 
+  /**
+   * @var string
+   */
+  protected $surcharge;
+
+  /**
+   * @var bool
+   */
+  protected $signature_required;
+
   public function __construct($response) {
     parent::__construct($response);
     $this->type = Paymentree::RESPONSE_TYPE_DEBIT;
@@ -159,6 +169,10 @@ class DebitResponse extends DebitGiftcardResponse {
 
     if ($expiry = $this->getDocumentContent('TokenExp')) {
       $this->setTokenExpiry($expiry);
+    }
+
+    if ($surcharge = $this->getDocumentContent('SurCharge')) {
+      $this->setSurcharge($surcharge);
     }
   }
 
@@ -416,6 +430,39 @@ class DebitResponse extends DebitGiftcardResponse {
    */
   protected function setTokenExpiry($date) {
     $this->token_exp = $date;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getSurcharge() {
+    return $this->surcharge;
+  }
+
+  /**
+   * @param string $surcharge
+   * @return $this
+   */
+  protected function setSurcharge($surcharge) {
+    $this->surcharge = $surcharge;
+    return $this;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getSignatureRequired() {
+    return $this->signature_required;
+  }
+
+  /**
+   * @param string $signature_required
+   *   "true" or "false".
+   * @return $this
+   */
+  protected function setSignatureRequired($signature_required) {
+    $this->signature_required = preg_match('/true/i', $signature_required);
     return $this;
   }
 

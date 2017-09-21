@@ -60,14 +60,41 @@ class Response {
 
   /**
    * @var string
+   */
+  protected $server_number;
+
+  /**
+   * @var int
+   * "Status of current transaction." Max length 2.
+   */
+  protected $transaction_status;
+
+  /**
+   * @var string
    * Used for TablePay only.
    */
   protected $transaction_code;
 
   /**
    * @var string
+   * Terminal generated reference number.
    */
   protected $terminal_reference;
+
+  /**
+   * @var string
+   */
+  protected $host_response_message;
+
+  /**
+   * @var int
+   */
+  protected $host_response_code;
+
+  /**
+   * @var int
+   */
+  protected $batch_number;
 
   /**
    * @var string
@@ -123,6 +150,30 @@ class Response {
 
     if ($receipt = $this->getDocumentContent('CustomerReceipt')) {
       $this->setCustomerReceipt($receipt);
+    }
+
+    if ($server_number = $this->getDocumentContent('ServerNumber')) {
+      $this->setServerNumber($server_number);
+    }
+
+    if ($transaction_code = $this->getDocumentContent('TransactionCode')) {
+      $this->setTransactionCode($transaction_code);
+    }
+
+    if ($transaction_status = $this->getDocumentContent('TransactionStatus')) {
+      $this->setTransactionStatus($transaction_status);
+    }
+
+    if ($message = $this->getDocumentContent('HostResponseMsg')) {
+      $this->setHostResponseMessage($message);
+    }
+
+    if ($code = $this->getDocumentContent('HostResponseCode')) {
+      $this->setHostResponseCode($code);
+    }
+
+    if ($number = $this->getDocumentContent('BatchNo')) {
+      $this->setBatchNumber($number);
     }
 
     if ($reference = $this->getDocumentContent('TerminalReference')) {
@@ -336,10 +387,90 @@ class Response {
   }
 
   /**
+   * @return string
+   */
+  public function getServerNumber() {
+    return $this->server_number;
+  }
+
+  /**
+   * @param string $number
+   * @return $this
+   */
+  protected function setServerNumber($number) {
+    $this->server_number = $number;
+    return $this;
+  }
+
+  /**
+   * @return int
+   */
+  public function getTransactionStatus() {
+    return $this->transaction_status;
+  }
+
+  /**
+   * @param int $status
+   * @return $this
+   */
+  protected function setTransactionStatus($status) {
+    $this->transaction_status = (int) $status;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getHostResponseMessage() {
+    return $this->host_response_message;
+  }
+
+  /**
+   * @param string $message
+   * @return $this
+   */
+  protected function setHostResponseMessage($message) {
+    $this->host_response_message = $message;
+    return $this;
+  }
+
+  /**
+   * @return int
+   */
+  public function getHostResponseCode() {
+    return $this->host_response_code;
+  }
+
+  /**
+   * @param int $code
+   * @return $this
+   */
+  protected function setHostResponseCode($code) {
+    $this->host_response_code = (int) $code;
+    return $this;
+  }
+
+  /**
+   * @return int
+   */
+  protected function getBatchNumber() {
+    return $this->batch_number;
+  }
+
+  /**
+   * @param int $number
+   * @return $this
+   */
+  protected function setBatchNumber($number) {
+    $this->batch_number = (int) $number;
+    return $this;
+  }
+
+  /**
    * Used for TablePay only.
    * @return string
    */
-  public function getTransactionCode() {
+  protected function getTransactionCode() {
     return $this->transaction_code;
   }
 
@@ -364,7 +495,7 @@ class Response {
    * @return $this
    */
   protected function setTerminalReference($reference) {
-    $this->transaction_code = $reference;
+    $this->terminal_reference = $reference;
     return $this;
   }
 
