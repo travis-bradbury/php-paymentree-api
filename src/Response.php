@@ -102,6 +102,31 @@ class Response {
   protected $terminal_id;
 
   /**
+   * @var string
+   */
+  protected $merchant_id;
+
+  /**
+   * @var string
+   */
+  protected $customer_name;
+
+  /**
+   * @var string
+   */
+  protected $customer_card_description;
+
+  /**
+   * @var string
+   */
+  protected $sequence_number;
+
+  /**
+   * @var string
+   */
+  protected $transaction_reference_number;
+
+  /**
    * @var \DOMDocument
    * A DOMDocument object representing the response.
    */
@@ -182,6 +207,26 @@ class Response {
 
     if ($id = $this->getDocumentContent('TerminalID')) {
       $this->setTerminalId($id);
+    }
+
+    if ($id = $this->getDocumentContent('MerchantID')) {
+      $this->setMerchantId($id);
+    }
+
+    if ($name = $this->getDocumentContent('CustomerName')) {
+      $this->setCustomerName($name);
+    }
+
+    if ($description = $this->getDocumentContent('CustomerCardDescription')) {
+      $this->setCustomerCardDescription($description);
+    }
+
+    if ($number = $this->getDocumentContent('SequenceNumber')) {
+      $this->setSequenceNumber($number);
+    }
+
+    if ($number = $this->getDocumentContent('TransactionReferenceNumber')) {
+      $this->setTransactionReferenceNumber($number);
     }
   }
 
@@ -512,6 +557,86 @@ class Response {
    */
   protected function setTerminalId($id) {
     $this->terminal_id = $id;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getMerchantId() {
+    return $this->merchant_id;
+  }
+
+  /**
+   * @param string $id
+   * @return $this
+   */
+  protected function setMerchantId($id) {
+    $this->merchant_id = $id;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getCustomerName() {
+    return $this->customer_name;
+  }
+
+  /**
+   * @param string $name
+   * @return $this
+   */
+  protected function setCustomerName($name) {
+    $this->customer_name = $name;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getCustomerCardDescription() {
+    return $this->customer_card_description;
+  }
+
+  /**
+   * @param string $description
+   * @return $this
+   */
+  protected function setCustomerCardDescription($description) {
+    $this->customer_card_description = $description;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getSequenceNumber() {
+    return $this->sequence_number;
+  }
+
+  /**
+   * @param string $number
+   * @return $this
+   */
+  protected function setSequenceNumber($number) {
+    $this->sequence_number = $number;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTransactionReferenceNumber() {
+    return $this->transaction_reference_number;
+  }
+
+  /**
+   * @param string $number
+   * @return $this
+   */
+  protected function setTransactionReferenceNumber($number) {
+    $this->transaction_reference_number = $number;
     return $this;
   }
 
