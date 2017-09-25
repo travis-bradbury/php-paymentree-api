@@ -66,4 +66,15 @@ interface ResponseInterface {
    * @return string
    */
   public function getTransactionCode();
+
+  /**
+   * @return string
+   */
+  public function getTerminalId();
+
+  /**
+   * @return string
+   */
+  public function getTerminalReference();
+
 }
